@@ -1,0 +1,12 @@
+/* ACCORDION */
+.accordion-header {
+  margin-top: 0;
+}
+
+/* HIGHLIGHT */
+pre {
+  padding: 0;
+}
+.hljs {
+  padding: 10px;
+}

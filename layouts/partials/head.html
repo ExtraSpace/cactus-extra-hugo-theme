@@ -13,7 +13,10 @@
     {{ .Scratch.Set "colortheme" .Site.Params.Colortheme }}
   {{ end }}
   {{ $colortheme := .Scratch.Get "colortheme" }}
+  {{ partial "head_highlightjs.html" . }}
+  <link rel="stylesheet" href={{ "lib/bootstrap/css/bootstrap.min.css" | absURL }}>
   <link rel="stylesheet" href="{{ $colortheme | printf "css/style-%s.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/ui-extra.css" | absURL }}">
   <!-- Custom CSS -->
   {{ range .Site.Params.css }} <link rel="stylesheet" href="{{ . | absURL }}"> {{ end }}
   {{ `
