@@ -1,14 +1,14 @@
-var accordions = document.querySelectorAll('div.section.accordion')
+var accordions = document.querySelectorAll('div.section.accordions')
 accordions.forEach(accordion => {
   accordionWrapper = document.createElement("div")
   accordionWrapper.setAttribute("class", "accordion")
   accordionWrapper.setAttribute("id", "accordion-wrapper")
   
-  var items = accordion.querySelectorAll("div.section")
+  var items = accordion.querySelectorAll("div.section.accordion")
   items.forEach((item, idx) => {
     const accordionID = item.id
     const accordionTitle = item.querySelector("h2, h3, h4, h5")
-    const accordionContent = item.querySelector("p")
+    const accordionContent = item.querySelectorAll("div.section.accordion > :not(:first-child)")
     
     var itemWrapper = document.createElement("div")
     itemWrapper.setAttribute("class", "accordion-item")
@@ -36,7 +36,9 @@ accordions.forEach(accordion => {
     
     var contentInnerWrapper = document.createElement("div")
     contentInnerWrapper.setAttribute("class", "accordion-body")
-    contentInnerWrapper.append(accordionContent)
+    accordionContent.forEach(panel => {
+      contentInnerWrapper.appendChild(panel)
+    })
     contentOuterWrapper.append(contentInnerWrapper)
     
     

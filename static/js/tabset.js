@@ -10,11 +10,11 @@ tabsets.forEach(tabset => {
   tabContents.setAttribute("id", "myTabContent")
   
   
-  var tabs = tabset.querySelectorAll('div.section')
+  var tabs = tabset.querySelectorAll('div.section.tab')
   tabs.forEach((tab, idx) => {
     const tabID = tab.id
     const tabTitle = tab.querySelector('h2, h3, h4, h5')
-    const tabPanel = tab.querySelector('p')
+    const tabPanel = tab.querySelectorAll("div.section.tab > :not(:first-child)")
     
     
     var li = document.createElement("li")
@@ -41,7 +41,9 @@ tabsets.forEach(tabset => {
     tabContent.setAttribute("role", "tabpanel")
     tabContent.setAttribute("aria-labelledby",`${tabID}-tab`)
     
-    tabContent.appendChild(tabPanel)
+    tabPanel.forEach(panel => {
+      tabContent.appendChild(panel)
+    })
     tabContents.append(tabContent)
     tab.remove()
   })
