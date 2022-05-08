@@ -13,7 +13,7 @@ tabsets.forEach(tabset => {
   var tabs = tabset.querySelectorAll('div.section.tab')
   tabs.forEach((tab, idx) => {
     const tabID = tab.id
-    const tabTitle = tab.querySelector('h2, h3, h4, h5')
+    const tabTitle = tab.querySelector('h2, h3, h4, h5, h6')
     const tabPanel = tab.querySelectorAll("div.section.tab > :not(:first-child)")
     
     
