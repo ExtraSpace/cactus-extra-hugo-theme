@@ -1,0 +1,62 @@
+{{ define "main" }}
+<section id="about-me" class="about">
+  <h1 id="about-title">{{ .Params.title }}</h1>
+  <div class="row about-content">
+    <div class="col-md-8" id="about-me-text">
+      {{ .Content }}
+      <p>
+        Befriend me on:<br>|
+        {{ $length := (len .Page.Params.social) }}
+        {{ range $index, $elem := .Page.Params.social}}
+        <a class="icon" target="_blank" rel="noopener" href="{{ $elem.link }}">
+          <i class="fab fa-{{ lower $elem.name }}"></i>
+          {{ $elem.label }}
+        </a>
+        {{/* {{ end }} */}}
+        {{- print "|" -}}
+        {{ end }}
+
+      </p>
+    </div>
+    <div class="col portrait" id="portrait">
+      <div class="row" id="portrait-image">
+        <img src="{{ .Params.Portrait | absURL }}" width="100%" height="auto" />
+      </div>
+      {{ if isset .Params "address" }}
+      <div class="row" id="contact-address">
+        {{ if isset .Params.Address "email"}}
+        <a href="mailto:{{ .Params.Address.Email }}">
+          <i class="fa fa-envelope"></i>
+          {{ .Params.Address.email }}
+        </a>
+        {{ end }}
+        {{ if isset .Params.Address "homepage"}}
+        <a href="{{ .Params.Address.Homepage }}">
+          <i class="fa fa-globe"></i>
+          {{ .Params.Address.homepage }}
+        </a>
+        {{ end }}
+        {{ if isset .Params.Address "twitter"}}
+        <a href="https://twitter.com/{{ .Params.Address.Twitter }}">
+          <i class="fab fa-twitter"></i>
+          @{{ .Params.Address.Twitter }}
+        </a>
+        {{ end }}
+        {{ if isset .Params.Address "linkedin"}}
+        <a href="https://linkedin.com/in/{{ .Params.Address.LinkedIn }}">
+          <i class="fab fa-linkedin"></i>
+          {{ .Params.Address.Linkedin }}
+        </a>
+        {{ end }}
+        {{ if isset .Params.Address "contact"}}
+        <a href="https://goo.gl/maps/XBk7X2rMnQqfggHG6">
+          <i class="fa fa-address-card"></i>
+          <address>{{ .Params.Address.Contact | safeHTML }}</address>
+        </a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
